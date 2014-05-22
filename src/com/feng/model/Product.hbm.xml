@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+        package="org.hibernate.auction">
+        <class name="com.feng.model.Product" table="Products">
+             <id name="productId" column="productId" type="int">
+                  <generator class="increment"/>
+             </id>    
+                         
+             <property name="name" column="name" type="string" length="50" />
+             <property name="genre" column="genre" type="string" length="50" />
+             <property name="starring" column="starring" type="string" length="50" />
+             <property name="director" column="director" type="string" length="50" />
+             <property name="language" column="language" type="string" length="50" />
+             
+             <property name="price" column="price"/> 
+             <property name="poster" column="poster" type="string" length="50" />
+             
+             <property name="story" column="story" type="string" length="50" />
+             <property name="storyAbstract" column="storyAbstract" type="string" length="50" />             
+        </class>
+        
+</hibernate-mapping>

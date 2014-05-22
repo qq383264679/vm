@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+        package="org.hibernate.auction">
+        <class name="com.feng.model.OrderLine" table="OrderLines" lazy="true">
+             <id name="orderId" column="orderId" type="int">
+                  <generator class="foreign">  
+               		 <param name="property">order</param>  
+            	  </generator>
+             </id>    
+
+             <property name="quantity" column="quantity" />
+             <!-- 多对一-->
+             <many-to-one name="product" column="productId" class="com.feng.model.Product" />
+             <!-- 一对一 -->
+             <one-to-one name="order" constrained="true"></one-to-one>
+        </class>
+        
+</hibernate-mapping>
