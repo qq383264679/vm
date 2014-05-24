@@ -1,13 +1,18 @@
 package com.feng;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.feng.dao.BaseDao;
+import com.feng.dao.imp.UserDaoImp;
 import com.feng.model.Order;
 import com.feng.model.Product;
 import com.feng.model.User;
+import com.feng.service.ProductService;
+import com.feng.service.UserService;
 import com.feng.util.SpringUtil;
 
 
@@ -30,8 +35,43 @@ public class Test {
 	public static void main(String[] args) {
 		Test t = new Test();
 		t.init();
-		t.productTest();
+		//t.testProductService();
 	}
+	
+	
+	public void testProductService() {
+		ProductService ps = (ProductService) ctx.getBean("productService");
+		
+		List<Product> p = ps.getProducts(2, 2);
+		for(Product product : p) {
+			
+			System.out.println(product.getProductId());
+		}
+	}
+	
+	
+	
+	public void testUserDao() {
+		UserService service =  (UserService) ctx.getBean("userService");
+//		basedao.checkUser(new User());
+		
+		User u = new User();
+		u.setUserName("feng");
+		u.setPassword("111");
+		
+		boolean b = service.checkUser(u);
+		System.out.println(b);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public void userTest() {
 		BaseDao baseDao = (BaseDao) ctx.getBean("userDao");
@@ -45,7 +85,7 @@ public class Test {
 		Product p = new Product();
 		p.setDirector("张艺谋");
 		p.setLanguage("国语");
-		p.setName("红高粱");
+		p.setName("红高粱3");
 		p.setStarring("11111111111111111111111111111111111111111111");
 		p.setGenre("爱情");
 		p.setPoster("1.jpg");

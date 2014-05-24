@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- name随便写  用于被其他包引用
+        namespace标示随便写 
+    -->
+	<package name="surveyDoor" namespace="/" extends="struts-default">
+	    <interceptors>
+	        <!-- 定义拦截器 -->
+	        <interceptor name="logn" class="com.feng.interceptor.LognActionInterceptor"></interceptor>
+	        <!-- 定义拦截器栈 -->
+	        <interceptor-stack name="survey">
+	            <interceptor-ref name="logn"></interceptor-ref>
+	            <!-- struts2自带的拦截器 -->
+	            <interceptor-ref name="defaultStack"></interceptor-ref>
+	        </interceptor-stack>
+	    </interceptors>
+	    
+	    <!-- 定义默认栈 就不需要为每个action指定了 -->
+	    <!-- <default-interceptor-ref name="" />  -->
+	    
+	    <!-- 进入主界面的action -->
+		<action name="productAction_*" class="com.feng.action.ProductAction" method="{1}">
+			<result name="mainView">/WEB-INF/vm/main.jsp</result>			
+			<result name="interceptorIndex">InterceptorTest.jsp</result>
+			
+		</action>
+		 
+		<!-- 登陆 -->
+		<action name="lognAction_*" class="com.feng.action.LognAction" method="{1}">
+			<result name="lognView">index.jsp</result>
+			<result name="succeed">/WEB-INF/vm/main.jsp</result>
+			<result name="input">index.jsp</result> 
+		</action>
+		
+		<!-- 购买 -->
+		<action name="OrderAction_*" class="com.feng.action.OrderAction" method="{1}">
+		    <result name="succeed">/WEB-INF/vm/order.jsp</result>
+		</action>
+		
+
+	</package>
+</struts>
