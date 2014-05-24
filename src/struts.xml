@@ -7,26 +7,22 @@
     <!-- name随便写  用于被其他包引用
         namespace标示随便写 
     -->
-	<package name="surveyDoor" namespace="/" extends="struts-default">
+	<package name="vm_shop" namespace="/" extends="struts-default">
 	    <interceptors>
 	        <!-- 定义拦截器 -->
 	        <interceptor name="logn" class="com.feng.interceptor.LognActionInterceptor"></interceptor>
 	        <!-- 定义拦截器栈 -->
-	        <interceptor-stack name="survey">
+	        <interceptor-stack name="vm_shop">
 	            <interceptor-ref name="logn"></interceptor-ref>
 	            <!-- struts2自带的拦截器 -->
 	            <interceptor-ref name="defaultStack"></interceptor-ref>
 	        </interceptor-stack>
 	    </interceptors>
-	    
-	    <!-- 定义默认栈 就不需要为每个action指定了 -->
-	    <!-- <default-interceptor-ref name="" />  -->
+	   
 	    
 	    <!-- 进入主界面的action -->
 		<action name="productAction_*" class="com.feng.action.ProductAction" method="{1}">
-			<result name="mainView">/WEB-INF/vm/main.jsp</result>			
-			<result name="interceptorIndex">InterceptorTest.jsp</result>
-			
+			<result name="mainView">/WEB-INF/vm/main.jsp</result>						
 		</action>
 		 
 		<!-- 登陆 -->
@@ -37,8 +33,13 @@
 		</action>
 		
 		<!-- 购买 -->
-		<action name="OrderAction_*" class="com.feng.action.OrderAction" method="{1}">
-		    <result name="succeed">/WEB-INF/vm/order.jsp</result>
+		<action name="orderAction_*" class="com.feng.action.OrderAction" method="{1}">
+		    <result name="orderView">/WEB-INF/vm/order.jsp</result>
+		    <result name="shopcartView">/WEB-INF/vm/orderTotal.jsp</result>
+		    <result name="finishAccount">/WEB-INF/vm/finishOrder.jsp</result>
+		    <result name="interceptorIndex">index.jsp</result>		    
+		    <!-- 为该action配置拦截器 -->
+		    <interceptor-ref name="vm_shop" />
 		</action>
 		
 

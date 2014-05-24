@@ -4,7 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping 
         package="org.hibernate.auction">
-        <class name="com.feng.model.OrderLine" table="OrderLines" lazy="true">
+        <class name="com.feng.model.OrderLine" table="OrderLines" lazy="false">
              <id name="orderId" column="orderId" type="int">
                   <generator class="foreign">  
                		 <param name="property">order</param>  

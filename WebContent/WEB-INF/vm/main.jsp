@@ -54,6 +54,7 @@
 			
 			.footer {
 				margin: 0 auto;
+				margin-top:-45px;
 				height: 100px;
 				width: 100%;
 				background-color:rgb(52, 56, 68);
@@ -89,7 +90,7 @@
 					<s:property value="#session.user.userName" />
 				</a>
 				<span>|</span>
-				<a href="#">购物车</a>
+				<a href="orderAction_toShopcartView">购物车</a>
 			</div>
 		</div>
 		<!-- 分割线············································· -->
@@ -106,7 +107,7 @@
 	                    <p style="height:3px; margin-top:25px;">剧情介绍：<s:property value="#product.storyAbstract" /></p>
 	          		  </div>
 	                  <p style="float: right;">价格：<s:property value="#product.price" /></p>
-	                  <input type="button" value="购买" style="float: right;" />
+	                  <a href="orderAction_toOrderView?productId=<s:property value="#product.productId" />" style="float: right;">购买</a>
 				</div>
             	<hr />
             </s:iterator> 

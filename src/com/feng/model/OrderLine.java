@@ -4,13 +4,6 @@ public class OrderLine {
 	private int orderId;
 	
 	private int quantity; //定勾数量
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
 
 	//完成Product  --OrderLine 多对一关系
 	private Product product;
@@ -18,6 +11,14 @@ public class OrderLine {
 	//完成Order   --orderLine  一对一的关联
 	private Order order;
 
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	public int getOrderId() {
 		return orderId;
 	}

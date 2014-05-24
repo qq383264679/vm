@@ -45,6 +45,15 @@ public class ProductServiceImp extends BaseServiceImp<Product> implements Produc
 		return q.list();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see com.feng.service.ProductService#getProduct(int)
+	 */
+	public Product getProduct(int productId) {
+		// TODO Auto-generated method stub
+		return (Product) baseDao.getEntity(productId);
+	}
+
 
 
 }

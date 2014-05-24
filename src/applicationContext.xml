@@ -75,7 +75,7 @@
 	</tx:advice>
 	<!-- AOP -->
 	<aop:config> 
-	    <aop:pointcut id="txPointcut" expression="execution(* com.feng.dao.*.*(..))"/>  
+	    <aop:pointcut id="txPointcut" expression="execution(* com.feng.service.*.*(..))"/>  
 	    <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
 	</aop:config>    
 </beans>

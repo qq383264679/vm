@@ -34,6 +34,6 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 	@Override
 	public T getModel() {
 		return user;
-	};
+	}
 
 }

@@ -20,5 +20,17 @@ public class OrderServiceImp extends BaseServiceImp<Order> implements OrderServi
 		super.setBaseDao(dao);
 	}
 
+	@Override
+	public void saveOrer(Order order) {
+		// TODO Auto-generated method stub
+		this.saveEntity(order);
+	}
+
+	//¸ù¾Ýid²éÕÒmoder
+	public Order getOrder(int id) {
+		// TODO Auto-generated method stub
+		return this.getEntity(id);
+	}
+
 
 }

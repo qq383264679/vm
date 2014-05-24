@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>     
+<%@ taglib prefix="s" uri="/struts-tags" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>在线购物系统</title>
-		
+		<script type="text/javascript" src="js/jquery-2.0.3.js"></script>
 		<style type="text/css">
 			body {
 				margin: 0px;
@@ -50,11 +50,13 @@
 				<!--background-color: blue;-->
 			
 			}
-			
+			.content_c a {
+				margin-left: 73.5%;
+			}
 			
 			.footer {
 				margin: 0 auto;
-				margin-top:55px;
+				margin-top:35px;
 				height: 100px;
 				width: 100%;
 				background-color:rgb(52, 56, 68);
@@ -64,21 +66,24 @@
 				height:50px;
 				margin:0 auto;
 			}
-			.login {
-				width:360px;
-				height:360px;
-				border:1px solid #ccf;
-				margin:0 auto;
-				margin-top:-60px;
-				text-align: center;
-			}
-			.title {
-				width:360px;
-				height:40px;
-				background:#ccc;
-			}
 		</style>
 	</head>
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+	        //遍历table中的tr
+			
+			//table 
+			$("table tr:gt(0)").each(function() {
+			 	var $tr = $(this);
+				var $price = $tr.children().eq(1);  //1
+				var $quantity = $tr.children().eq(2);  //2
+				
+				var $money = $tr.children().eq(4);  //total 
+				$money.html("￥" +　$price.html()*$quantity.html());
+				//alert($price.html() + ":::" + $quantity.html());			
+			});
+	    });
+	</script>
 	<body>
 		<div class="header">
 			<div class="header_right">
@@ -96,19 +101,31 @@
 		<!-- 分割线············································· -->
 		<div class="content">
 			<div class="content_c">
+            		<table style="border:1px solid #ccc; width:800px;height:52px; margin: 0 auto; margin-top:20px">
+						<tr style="background-color: #ccc; height: 20px; text-align: right;">
+							<td>片 名</td>
+							<td>单 价</td>
+							<td>数 量</td>
+                            <td>订购时间</td>
+                            <td>金额</td>
+                            <td>操作</td>
+						</tr>
+						<s:iterator value="orderLines" id="orderline">
+								<tr style="text-align:right;">
+									<td><s:property value="#orderline.product.name"/></td>
+									<td id="price<s:property value="#orderline.orderId"/>"><s:property value="#orderline.product.price"/></td>
+									<td id="quantity<s:property value="#orderline.orderId"/>"><s:property value="#orderline.quantity"/></td>
+		                            <td><s:property value="#orderline.order.submitDate"/></td>
+		                            <td id="total<s:property value="#orderline.orderId"/>"></td>
+		                            <td style="width:300px;"><a href="orderAction_toFinishAccount?orderId=<s:property value="#orderline.orderId"/>">结账支付</a></td>
+								</tr>
+						 </s:iterator> 
+						 
+					</table>
+					<br /><br />
+					<a href="productAction_toMainView">继续购物</a>
 			</div>
-            <!-- 登陆对话框-->
-           	<div class="login">
-            	<div class="title">用户登录</div>
-				<s:form action="lognAction_doLogn"> 
-					<s:fielderror cssStyle="color:red"></s:fielderror>
-        			<s:textfield name="userName" label="用户名"></s:textfield>
-        		
-        			<s:password name="password" label="密码"></s:password>
-        			<s:submit value="登录"></s:submit>
-  				</s:form>
-  				<a href="productAction_toMainView">浏览进入 </a>
-            </div>
+
 		</div>
         
 		<div class="footer">
@@ -119,3 +136,4 @@
 		</div>
 	</body>
 </html>
+

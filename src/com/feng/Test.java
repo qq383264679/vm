@@ -1,6 +1,9 @@
 package com.feng;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
@@ -9,8 +12,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.feng.dao.BaseDao;
 import com.feng.dao.imp.UserDaoImp;
 import com.feng.model.Order;
+import com.feng.model.OrderLine;
 import com.feng.model.Product;
 import com.feng.model.User;
+import com.feng.service.OrderLineService;
 import com.feng.service.ProductService;
 import com.feng.service.UserService;
 import com.feng.util.SpringUtil;
@@ -35,8 +40,37 @@ public class Test {
 	public static void main(String[] args) {
 		Test t = new Test();
 		t.init();
-		//t.testProductService();
+		t.OrderLinesServiceTest();
 	}
+	
+	
+	
+	
+	public void OrderLinesServiceTest() {
+		OrderLineService os = (OrderLineService) ctx.getBean("orderLineService");
+		
+/*		OrderLine ol = os.getEntity(7);
+		os.deleteOrderLine(ol);*/
+		
+
+		
+		
+		List<OrderLine> orderLines = os.getOrderLines("feng");
+		for(int i = 0; i < orderLines.size(); i++) {
+			System.out.println("影片名字" + orderLines.get(i).getProduct().getName());
+			System.out.println("订购单价" + orderLines.get(i).getProduct().getPrice());
+			System.out.println("订购数量" + orderLines.get(i).getQuantity());
+			System.out.println("影片订购时间" + orderLines.get(i).getOrder().getSubmitDate());
+			
+			System.out.println(orderLines.get(i).getOrderId());
+		}
+
+
+	}
+	
+	
+	
+	
 	
 	
 	public void testProductService() {

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>     
+<%@ taglib prefix="s" uri="/struts-tags" %>      
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -65,15 +65,15 @@
 				margin:0 auto;
 			}
 			.login {
-				width:360px;
-				height:360px;
+				width:460px;
+				height:160px;
 				border:1px solid #ccf;
 				margin:0 auto;
 				margin-top:-60px;
 				text-align: center;
 			}
 			.title {
-				width:360px;
+				width:460px;
 				height:40px;
 				background:#ccc;
 			}
@@ -99,15 +99,8 @@
 			</div>
             <!-- 登陆对话框-->
            	<div class="login">
-            	<div class="title">用户登录</div>
-				<s:form action="lognAction_doLogn"> 
-					<s:fielderror cssStyle="color:red"></s:fielderror>
-        			<s:textfield name="userName" label="用户名"></s:textfield>
-        		
-        			<s:password name="password" label="密码"></s:password>
-        			<s:submit value="登录"></s:submit>
-  				</s:form>
-  				<a href="productAction_toMainView">浏览进入 </a>
+            	<div class="title"></div>
+                <p>订单已经成功提交[<a href="orderAction_toShopcartView">返回</a>]</p>
             </div>
 		</div>
         

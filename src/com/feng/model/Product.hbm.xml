@@ -4,7 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping 
         package="org.hibernate.auction">
-        <class name="com.feng.model.Product" table="Products">
+        <class name="com.feng.model.Product" table="Products" lazy="false">
              <id name="productId" column="productId" type="int">
                   <generator class="increment"/>
              </id>    

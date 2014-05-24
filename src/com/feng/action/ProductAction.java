@@ -36,11 +36,9 @@ public class ProductAction extends BaseAction<Product> {
 	
 	//跳转到 product 主界面   
 	public String toMainView() {
-		System.out.println(productService);
 		totals = (productService.getProducts().size() + 1) / 2;  
 		//第一个参数显示页数  第二个参数显示当前页数默认从1开始
 		products = productService.getProducts(numbers,pages);
-		System.out.println(products.size());
 		return "mainView";
 	}
 

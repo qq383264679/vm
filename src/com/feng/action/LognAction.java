@@ -72,7 +72,6 @@ public class LognAction extends BaseAction<User> implements SessionAware,Validat
 		
 		} else {			
 			session.put("user", this.user);
-			System.out.println("sxxxxxxxxx");
 		}
 		
 	}
