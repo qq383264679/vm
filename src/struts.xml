@@ -23,7 +23,19 @@
 	    
 	    <!-- 进入主界面的action -->
 		<action name="productAction_*" class="com.feng.action.ProductAction" method="{1}">
-			<result name="mainView">/WEB-INF/vm/main.jsp</result>						
+			<result name="mainView">/WEB-INF/vm/main.jsp</result>
+			<result name="fileUploading">/WEB-INF/vm/moviesUploading.jsp</result>	
+			<result name="input">/WEB-INF/vm/moviesUploading.jsp</result>	
+			
+			<interceptor-ref name="fileUpload">  
+              <!-- 配置允许上传的文件类型，多个用","分隔 -->  
+              <param name="allowedTypes">  
+    　　　　　　			image/bmp,image/png,image/gif,image/jpeg,image/jpg,image/x-png, image/pjpeg  
+              </param>  
+              <!-- 配置允许上传的文件大小，单位字节 -->  
+            <!--   <param name="maximumSize">102400</param> -->  
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" /> 				
 		</action>
 		 
 		<!-- 登陆 -->
