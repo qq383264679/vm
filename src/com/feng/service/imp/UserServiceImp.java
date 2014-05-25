@@ -24,9 +24,16 @@ public class UserServiceImp extends BaseServiceImp<User> implements UserService{
 		super.setBaseDao(dao);
 	}
 
-	@Override
+	//判断用户是否已经注册 若注册返回true
 	public boolean checkName(String name) {
 		// TODO Auto-generated method stub
+		String hql = "from User as u";
+		List<User> users = this.findEntityByHQL(hql);
+		for(User user : users) {
+			if(user.getUserName().trim().equals(name)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -45,7 +52,11 @@ public class UserServiceImp extends BaseServiceImp<User> implements UserService{
 		return false;
 	}
 
-	//判断用户名是否已经注册
+	@Override
+	public void saveUser(User u) {
+		this.saveEntity(u);
+	}
+
 
 
 }

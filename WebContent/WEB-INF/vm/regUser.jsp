@@ -99,15 +99,14 @@
             <!-- 登陆对话框-->
            	<div class="login">
             	<div class="title" style="text-align: center;">用户登录</div>
-				<s:form action="lognAction_doLogn"> 
+				<s:form action="regAction_doReg"> 
 					<s:fielderror cssStyle="color:red"></s:fielderror>
-					用户名<br />
+					<font color="red">用户名(*长度3-5)</font><br />
         			<s:textfield name="userName" label="用户名"></s:textfield><br/>
-        			密码<br/>
+        			<font color="red">密码(*长度3-8)</font><br/>
         			<s:password name="password" label="密码"></s:password><br/>
         			
-        			<s:submit name="reg" value="注册"  method="toRegView"/>
-        			<s:submit name="sign" value="登录" />
+        			<s:submit name="reg" value="注册"/>
   				</s:form>
   				<a href="productAction_toMainView">浏览进入 </a>
             </div>

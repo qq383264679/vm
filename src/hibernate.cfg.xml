@@ -10,7 +10,7 @@
         <!-- 显示sql语句 -->
     	<property name="show_sql">true</property>
     	<!-- 显示方言 -->
-    	<property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+    	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
     	<!-- 若数据库中没有创建表则自动创建表 -->
     	<property name="hibernate.hbm2ddl.auto">update</property>
     	

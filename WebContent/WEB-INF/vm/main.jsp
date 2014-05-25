@@ -74,7 +74,7 @@
 				$("#up_page").attr("href", "#");
 			}
 			var totals = $("#totals").html();
-			if(nowPages == totals) {
+			if(nowPages >= totals) {
 				$("#down_page").attr("href", "#");
 			}
 	    });

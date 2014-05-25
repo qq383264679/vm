@@ -40,7 +40,7 @@ public class Test {
 	public static void main(String[] args) {
 		Test t = new Test();
 		t.init();
-		t.OrderLinesServiceTest();
+		t.testUserDao();
 	}
 	
 	
@@ -93,8 +93,9 @@ public class Test {
 		u.setUserName("feng");
 		u.setPassword("111");
 		
-		boolean b = service.checkUser(u);
-		System.out.println(b);
+		//boolean b = service.checkUser(u);
+		//service.saveUser(u);
+		System.out.println(service.checkName("12d"));
 	}
 	
 	

@@ -4,6 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+    <constant name="struts.ui.theme" value="simple" />
     <!-- name随便写  用于被其他包引用
         namespace标示随便写 
     -->
@@ -29,9 +30,14 @@
 		<action name="lognAction_*" class="com.feng.action.LognAction" method="{1}">
 			<result name="lognView">index.jsp</result>
 			<result name="succeed">/WEB-INF/vm/main.jsp</result>
+			<result name="regView">/WEB-INF/vm/regUser.jsp</result>
 			<result name="input">index.jsp</result> 
 		</action>
-		
+		<!-- 注册 -->
+		<action name="regAction_*" class="com.feng.action.RegAction" method="{1}">
+			<result name="succeed">/WEB-INF/vm/main.jsp</result>
+			<result name="input">/WEB-INF/vm/regUser.jsp</result>
+		</action>
 		<!-- 购买 -->
 		<action name="orderAction_*" class="com.feng.action.OrderAction" method="{1}">
 		    <result name="orderView">/WEB-INF/vm/order.jsp</result>

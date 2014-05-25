@@ -41,7 +41,10 @@ public class LognAction extends BaseAction<User> implements SessionAware,Validat
 		this.userService = userService;
 	}
 	
-	
+	//到达注册界面
+	public String toRegView() {
+		return "regView";
+	}
 	//到达登陆界面
 	public String toLognView() {
 		//注销session
@@ -68,9 +71,8 @@ public class LognAction extends BaseAction<User> implements SessionAware,Validat
 		boolean b = userService.checkUser(this.user);
 		if(!b) {
 			this.addFieldError("error", "用户名或者密码有误");
-			//this.addFieldError("password", "用户名或者密码有误");
-		
-		} else {			
+			//this.addFieldError("password", "用户名或者密码有误");	
+		} else {				
 			session.put("user", this.user);
 		}
 		
