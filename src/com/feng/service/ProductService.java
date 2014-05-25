@@ -8,4 +8,5 @@ public interface ProductService {
 	public List<Product> getProducts();
 	public List<Product> getProducts(int numbers, int pages);
 	public Product getProduct(int productId);
+	public void saveProduct(Product p);
 }

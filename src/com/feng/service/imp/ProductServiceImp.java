@@ -54,6 +54,12 @@ public class ProductServiceImp extends BaseServiceImp<Product> implements Produc
 		return (Product) baseDao.getEntity(productId);
 	}
 
+	@Override
+	public void saveProduct(Product p) {
+		// TODO Auto-generated method stub
+		baseDao.saveEntity(p);
+	}
+
 
 
 }
