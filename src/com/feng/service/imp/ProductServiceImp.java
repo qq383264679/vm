@@ -15,7 +15,6 @@ import com.feng.service.ProductService;
 @Service("productService")
 public class ProductServiceImp extends BaseServiceImp<Product> implements ProductService {
 	@Resource(name="productDao")
-	private BaseDao baseDao;
 	public void setBaseDao(BaseDao<Product> dao) {
 		// TODO Auto-generated method stub
 		super.setBaseDao(dao);
@@ -25,7 +24,7 @@ public class ProductServiceImp extends BaseServiceImp<Product> implements Produc
 	public List<Product> getProducts() {
 		// TODO Auto-generated method stub
 		String hql = "from Product as p";
-		return baseDao.findEntityByHQL(hql);
+		return this.findEntityByHQL(hql);
 	}
 
 	/**
@@ -36,13 +35,7 @@ public class ProductServiceImp extends BaseServiceImp<Product> implements Produc
 	public List<Product> getProducts(int numbers, int pages) {
 		// TODO Auto-generated method stub
 		String hql = "from Product as p";
-		Session session = baseDao.getSession().openSession();
-		Query q = session.createQuery(hql);
-		
-		int nowPages = (pages-1)*numbers;
-		q.setFirstResult(nowPages);   
-		q.setMaxResults(numbers);
-		return q.list();
+		return this.findEntitys(hql, null, numbers, pages);
 	}
 
 	/*
@@ -51,13 +44,13 @@ public class ProductServiceImp extends BaseServiceImp<Product> implements Produc
 	 */
 	public Product getProduct(int productId) {
 		// TODO Auto-generated method stub
-		return (Product) baseDao.getEntity(productId);
+		return (Product) this.getEntity(productId);
 	}
 
 	@Override
 	public void saveProduct(Product p) {
 		// TODO Auto-generated method stub
-		baseDao.saveEntity(p);
+		this.saveEntity(p);
 	}
 
 

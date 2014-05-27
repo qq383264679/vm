@@ -45,7 +45,7 @@
 			
 			.content_c {
 				margin: 0 auto;
-				height: 180px;
+				height: 270px;
 				width: 60%;
 				<!--background-color: blue; -->
 			
@@ -54,7 +54,7 @@
 			
 			.footer {
 				margin: 0 auto;
-				margin-top:-45px;
+				margin-top:160px;
 				height: 100px;
 				width: 100%;
 				background-color:rgb(52, 56, 68);
@@ -98,13 +98,13 @@
 			<s:iterator value="products" id="product">
 	          	<div class="content_c">
 	            	  <div style="float:left"><img src="images/<s:property value="#product.poster" />" width="126" height="160"  /></div>
-	              	  <div style="float:left;">
+	              	  <div >
 	                    <p style="height:3px; margin-top:3px;"><font size="+2">电影名称：<s:property value="#product.name" /></font></p>
 	                    <p style="height:3px; margin-top:25px;">类型/流派：<s:property value="#product.genre" /></p>
 	                    <p style="height:3px; margin-top:25px;">领衔主演：<s:property value="#product.starring" /></p>
 	                    <p style="height:3px; margin-top:25px;">导演：<s:property value="#product.director" /></p>
 	                    <p style="height:3px; margin-top:25px;">对白：<s:property value="#product.language" /></p>
-	                    <p style="height:3px; margin-top:25px;">剧情介绍：<s:property value="#product.storyAbstract" /></p>
+	                    <p style="height:3px; margin-top:25px;height:70px;">剧情介绍：<s:property value="#product.storyAbstract" /></p>
 	          		  </div>
 	                  <p style="float: right;">价格：<s:property value="#product.price" /></p>
 	                  <a href="orderAction_toOrderView?productId=<s:property value="#product.productId" />" style="float: right;">购买</a>

@@ -5,9 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>订单页面</title>
-<script type="text/javascript" src="js/jquery-2.0.3.js"></script>
-<style type="text/css">
+	<title>订单页面</title> <script type="text/javascript"
+		src="js/jquery-2.0.3.js"></script>
+	<style type="text/css">
 body {
 	margin: 0px;
 	padding: 0px;
@@ -72,7 +72,7 @@ body {
 }
 </style>
 </head>
-	<script type="text/javascript">
+<script type="text/javascript">
 		$(document).ready(function(e) {
 			$("#productId").hide();
 	    });
@@ -116,45 +116,41 @@ body {
 		<div class="content_c">
 
 			<div style="float: left" class="image">
-				<img src="images/${product.poster }" style="width: 175px; height: 240px;" />
+				<img src="images/${product.poster }"
+					style="width: 175px; height: 240px;" />
 			</div>
 
 			<div style="margin-left: 8px;">
 				<p style="height: 1px; margin-top: 3px;">
 					<span id="productId">${product.productId }</span>
 				</p>
-				
+
 				<p style="height: 3px; margin-top: 3px;">
 					<font size="+2">电影名称：${product.name }</font>
 				</p>
-				<p style="height: 3px; margin-top: 40px;">
-					类型/流派：${product.genre }
+				<p style="height: 3px; margin-top: 40px;">类型/流派：${product.genre }
 				</p>
 				<p style="height: 3px; margin-top: 25px;">
-					领衔主演：${product.starring }
-				</p>
-				<p style="height: 3px; margin-top: 25px;">
-					导演：${product.director }
+					领衔主演：${product.starring }</p>
+				<p style="height: 3px; margin-top: 25px;">导演：${product.director }
 				</p>
 				<p style="height: 3px; margin-top: 25px;">
 					对白：${product.language }
 					<%-- <s:property value="#product.language" /> --%>
 				</p>
-				<p style="height: 3px; margin-top: 25px;">
-					价格：${product.price }
-				</p>
+				<p style="height: 3px; margin-top: 25px;">价格：${product.price }</p>
 				<p
 					style="height: 3px; margin-top: 25px; word-break: break-all; word-wrap: break-word;">
-					剧情介绍：${product.story }
-				</p>
+					剧情介绍：${product.story }</p>
 			</div>
 
 			<div
 				style="float: right; margin-right: -48px; margin-top: 185px; position: relative;">
-				数量<input type="text" name="quailty" id="quality">	
-				<input id="buy" type="button" value="购买" style="width: 80px; height: 30px;" onclick="buy_confirm();" />
+				数量<input type="text" name="quailty" id="quality"> <input
+					id="buy" type="button" value="购买"
+					style="width: 80px; height: 30px;" onclick="buy_confirm();" />
 			</div>
-			
+
 		</div>
 	</div>
 

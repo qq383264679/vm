@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
 import com.feng.dao.BaseDao;
@@ -26,10 +28,11 @@ public class OrderLineServiceImp extends BaseServiceImp<OrderLine> implements Or
 	}
 
 	//根据userName 来查找明细表
-	public List<OrderLine> getOrderLines(String userName) {
+	public List<OrderLine> getOrderLines(String userName, int numbers, int pages) {
 		// TODO Auto-generated method stub
 		String hql = "from OrderLine where orderId in (select orderId from Order where user.userName = ?)";
-		return this.findEntityByHQL(hql, userName);
+		System.out.println(userName + "-----------------------");
+		return this.findEntitys(hql, userName, numbers, pages);
 	}
 
 	//根据id查找model
@@ -49,5 +52,15 @@ public class OrderLineServiceImp extends BaseServiceImp<OrderLine> implements Or
 		// TODO Auto-generated method stub
 		this.deleteEntity(this.getEntity(orderId));
 	}
+
+	@Override
+	public List<OrderLine> getOrderLines(String userName) {
+		// TODO Auto-generated method stub
+		String hql = "from OrderLine where orderId in (select orderId from Order where user.userName = ?)";
+		return this.findEntityByHQL(hql, userName);
+	}
+
+
+
 
 }

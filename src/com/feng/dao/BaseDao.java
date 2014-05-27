@@ -16,6 +16,8 @@ public interface BaseDao<T> {
 	public T getEntity(int id);
 	public List<T> findEntityByHQL(String hql, Object...objects);
 	
+	//∑÷“≥
+	public List<T> findEntitys(String hql, Object object, int numbers, int pages);
 	//ªÒ»°sessionFactory
-	public SessionFactory getSession();
+//	public SessionFactory getSession();
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context
@@ -12,70 +12,74 @@
            http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 	<!-- 配置action bean -->
-<!--  	<bean id="UserService" class="com.feng.service.imp.UserServiceImp"/>  --> 
+	<!-- <bean id="UserService" class="com.feng.service.imp.UserServiceImp"/> -->
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<!-- 配置信息分离 -->
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
- 		<property name="locations">
-            <list>
-                <value>classpath:db.properties</value>
-            </list>    
- 		</property>
-	</bean> 
-	
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-	    <property name="driverClass" value="${JDBC.DBDriver}"></property>  
-    	<property name="jdbcUrl" value="${JDBC.Connection}"></property>  
-    	<property name="user" value="${JDBC.User}"></property>  
-    	<property name="password" value="${JDBC.Password}"></property>  
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:db.properties</value>
+			</list>
+		</property>
 	</bean>
-	
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${JDBC.DBDriver}"></property>
+		<property name="jdbcUrl" value="${JDBC.Connection}"></property>
+		<property name="user" value="${JDBC.User}"></property>
+		<property name="password" value="${JDBC.Password}"></property>
+	</bean>
+
 	<!-- 配置sessionFactory -->
-	
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" 
-	    p:dataSource-ref="dataSource"
-	    p:configLocation="classpath:hibernate.cfg.xml"
-	    />
-		<!-- Hibernate事物管理器 用来在service层面上进行管理 达到平台无关性 -->
-	
-	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-	    <property name="sessionFactory" ref="sessionFactory" />
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
+		p:dataSource-ref="dataSource" p:configLocation="classpath:hibernate.cfg.xml" />
+	<!-- Hibernate事物管理器 用来在service层面上进行管理 达到平台无关性 -->
+
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<!-- 配置事物通知 -->
 	<tx:advice id="txAdvice" transaction-manager="txManager">
-	    <tx:attributes>
-	       	<!--读 -->
-	        <tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT"/>
-	        <tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT"/>
-	        <tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT"/>
-	        <tx:method name="batch*" propagation="REQUIRED" isolation="DEFAULT"/>
-	        <!-- 写 -->
-	        <tx:method name="load*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
-	        <tx:method name="get*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
-	        <tx:method name="find*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
-	        
-	        <tx:method name="*" propagation="REQUIRED" isolation="DEFAULT"/>
-	    </tx:attributes>
+		<tx:attributes>
+			<!--读 -->
+			<tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="batch*" propagation="REQUIRED" isolation="DEFAULT" />
+			<!-- 写 -->
+			<tx:method name="load*" propagation="REQUIRED" isolation="DEFAULT"
+				read-only="true" />
+			<tx:method name="get*" propagation="REQUIRED" isolation="DEFAULT"
+				read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" isolation="DEFAULT"
+				read-only="true" />
+
+			<tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" />
+		</tx:attributes>
 	</tx:advice>
 	<!-- AOP -->
-	<aop:config> 
-	    <aop:pointcut id="txPointcut" expression="execution(* com.feng.service.*.*(..))"/>  
-	    <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
-	</aop:config>    
+	<aop:config>
+		<aop:pointcut id="txPointcut" expression="execution(* com.feng.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
 </beans>

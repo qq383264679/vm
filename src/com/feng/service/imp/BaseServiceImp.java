@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.SessionFactory;
+
 import com.feng.dao.BaseDao;
 import com.feng.service.BaseService;
 /**
@@ -18,7 +20,6 @@ public abstract class BaseServiceImp<T> implements BaseService<T> {
 	public void setBaseDao(BaseDao<T> dao) {
 		this.dao = dao;
 	}
-
 	@Override
 	public void saveEntity(T t) {
 		// TODO Auto-generated method stub
@@ -30,7 +31,11 @@ public abstract class BaseServiceImp<T> implements BaseService<T> {
 		// TODO Auto-generated method stub
 		dao.saveOrUpdateEntity(t);;
 	}
-
+	@Override
+	public List<T> findEntitys(String hql,Object object, int numbers, int pages) {
+		// TODO Auto-generated method stub
+		return dao.findEntitys(hql, object,numbers, pages);
+	}
 	@Override
 	public void updateEntity(T t) {
 		// TODO Auto-generated method stub

@@ -22,6 +22,8 @@ public class ProductAction extends BaseAction<Product> implements Validatable{
 	private ProductService productService;  //Spring自动注入
 	private List<Product> products;  //进行request郁闷传递
 	private int totals; //总共页数
+	private int numbers = 2;
+	private int pages = 1;
 	private File posterImage;  //海报图片 内容
 	private String posterImageFileName; //文件名称
 	private String posterImageContentType; //文件类型
@@ -38,8 +40,6 @@ public class ProductAction extends BaseAction<Product> implements Validatable{
 	public int getTotals() {
 		return totals;
 	}
-	private int numbers = 2;
-	private int pages = 1;
 	public List<Product> getProducts() {
 		return products;
 	}
@@ -61,7 +61,8 @@ public class ProductAction extends BaseAction<Product> implements Validatable{
 	
 	//跳转到 product 主界面   
 	public String toMainView() {
-		totals = (productService.getProducts().size() + 1) / 2;  
+		int productNumber = productService.getProducts().size();
+		totals = (productNumber % numbers == 0)? productNumber / numbers : productNumber / numbers + 1;
 		//第一个参数显示页数  第二个参数显示当前页数默认从1开始
 		products = productService.getProducts(numbers,pages);
 		return "mainView";

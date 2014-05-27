@@ -40,7 +40,7 @@ public class Test {
 	public static void main(String[] args) {
 		Test t = new Test();
 		t.init();
-		t.testUserDao();
+		t.OrderLinesServiceTest();
 	}
 	
 	
@@ -55,15 +55,12 @@ public class Test {
 
 		
 		
-		List<OrderLine> orderLines = os.getOrderLines("feng");
-		for(int i = 0; i < orderLines.size(); i++) {
-			System.out.println("影片名字" + orderLines.get(i).getProduct().getName());
-			System.out.println("订购单价" + orderLines.get(i).getProduct().getPrice());
-			System.out.println("订购数量" + orderLines.get(i).getQuantity());
-			System.out.println("影片订购时间" + orderLines.get(i).getOrder().getSubmitDate());
-			
-			System.out.println(orderLines.get(i).getOrderId());
+		List<OrderLine> orderLines = os.getOrderLines("feng", 3, 2);
+		for(OrderLine o : orderLines) {
+			System.out.println(o.getQuantity());
 		}
+		System.out.println(orderLines.size());
+
 
 
 	}

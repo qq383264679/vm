@@ -87,8 +87,19 @@ public abstract class BaseDaoImp<T> implements BaseDao<T> {
 		}
 		return q.list();
 	}
+
+	@SuppressWarnings("unchecked")
 	@Override
-	public SessionFactory getSession() {
-		return sf;
+	public List<T> findEntitys(String hql, Object object, int numbers, int pages) {
+		// TODO Auto-generated method stub
+		Query q = sf.getCurrentSession().createQuery(hql);
+		if(object != null) {
+			q.setParameter(0, object);
+		}
+		int nowPages = (pages-1)*numbers;
+		q.setFirstResult(nowPages);   
+		q.setMaxResults(numbers);
+		return q.list();
 	}
+
 }

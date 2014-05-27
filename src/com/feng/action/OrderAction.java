@@ -29,6 +29,26 @@ public class OrderAction extends BaseAction<Order> implements SessionAware {
 	private int productId;
 	private int quality;
 
+	//分页
+	private int totals; //总共页数
+	private int numbers = 5;
+	private int pages = 1;
+	
+	public int getTotals() {
+		return totals;
+	}
+	public int getNumbers() {
+		return numbers;
+	}
+	public void setNumbers(int numbers) {
+		this.numbers = numbers;
+	}
+	public int getPages() {
+		return pages;
+	}
+	public void setPages(int pages) {
+		this.pages = pages;
+	}
 	public List<OrderLine> getOrderLines() {
 		return orderLines;
 	}
@@ -65,13 +85,17 @@ public class OrderAction extends BaseAction<Order> implements SessionAware {
 	//跳转到购物车界面
 	public String toShopcartView() {
 		User user = (User) session.get("user"); //
-		orderLines = orderLineService.getOrderLines(user.getUserName());
+		
+		int OrderLinesNumber = orderLineService.getOrderLines(user.getUserName()).size();
+		totals = (OrderLinesNumber % numbers == 0)? OrderLinesNumber / numbers : OrderLinesNumber / numbers + 1;
+		System.out.println(totals + "总共");
+		orderLines = orderLineService.getOrderLines(user.getUserName(), numbers, pages);
+		//orderLines = orderLineService.getOrderLines(user.getUserName());
+		
 		return "shopcartView";
 	}
 	//完成结账后跳转到结账界面
 	public String toFinishAccount() {		
-		System.out.println(this.getModel().getOrderId() + "--->");
-
 		orderLineService.deleteOrderLine(this.getModel().getOrderId());
 		return "finishAccount";
 	}
